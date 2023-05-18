@@ -3,9 +3,15 @@
   flex-wrap: wrap;
   gap: 30px;
 }
-.add_btn {
+.file_or_folder_div {
   width: 100px;
-  height: 100px;
+  height: 120px;
+  overflow: hidden;
+  flex-direction: column;
+}
+.add_btn {
+  width: 80px;
+  height: 90px;
   border: 3px dashed gray;
   cursor: pointer;
   border-radius: 8px;
@@ -13,4 +19,10 @@
 .add_icon {
   color: gray;
   text-shadow: 1px black;
+}
+.margin_0 {
+  margin: 0;
+}
+.margin_top_5 {
+  margin-top: 5px;
 }

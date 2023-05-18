@@ -1,3 +1,9 @@
+import FIleAndFolderListing from "@/components/file-folder-listing/FIleAndFolderListing";
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <FIleAndFolderListing />
+    </main>
+  );
 }

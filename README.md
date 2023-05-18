@@ -1,34 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cloud Storage
 
-## Getting Started
+> Cloud Storage is easy and user friendly website to create and store fiels on clould hassle-free.
 
-First, run the development server:
+# Codebase Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+> ## Tech-Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Front-end: - NextJs
+- Back-end: -
+- Database: -
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+> ## Folder Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- assets: - Includes css and images folder. Can also inclide other assets for the project we want to add
+- components: - Includes shared components of the react
+- configs: - Includes configuration files for the project
+- app: - Contains pages component
+- utils:- Contains mis. utilities files like constant and helpers
 
-## Learn More
+> ## NPM scripts
 
-To learn more about Next.js, take a look at the following resources:
+- start: - To start development environment
+- build: - To create build of the project
+- test: - To run test cases
+- eject
+- lint: - To run eslint configuration and check code into the project
+- format: - To run prettier configuration to formatt code into the project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Development Workflow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+> ## Start Development
 
-## Deploy on Vercel
+### Requirement
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node version 18.12.1 and above
+- Npm version 8.19.2 and above
+- Code Editor: - VS Code, Atom etc.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> ### Guidlines
+
+- Try and be consistent with the overall code style and naming conventions.
+- Create files and folders into the relative place and refer codebase overview for the cosideration
+- To install any library once check it's compatibility and after installation update it into the README.md file
+- Naming convention should be relative to the functionality and meaningful
+
+> ### Naming conventions
+
+### Folders and files
+
+- Folders: - Kebab case
+- React Component files: - Pascal case
+- JS files: - Camel case
+- CSS files:- Camel case
+- Any other: - Caeml case
+
+### Components, classes and variables
+
+- React Components: - Pascal case
+- Constants: - Capitalized separated with underscore
+- Variables: - Camel case
+
+### Commits
+
+- Write commit with related issue code and add discription body properly
+- Add comments as discriptive as possible
+
+### Note: - If you find any improvement point do update README file with proper structure and create PR
+
+### Start project
+
+- npm install
+- npm run build
+- npm run start
+
+or
+
+- yarn add
+- yarn build
+- yarn start

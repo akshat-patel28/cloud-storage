@@ -1,0 +1,16 @@
+.file_and_floder_list_container {
+  max-width: 100%;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.add_btn {
+  width: 100px;
+  height: 100px;
+  border: 3px dashed gray;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.add_icon {
+  color: gray;
+  text-shadow: 1px black;
+}

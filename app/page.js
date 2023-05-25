@@ -1,9 +1,13 @@
 import FIleAndFolderListing from "@/components/file-folder-listing/FIleAndFolderListing";
+import Header from "@/components/header/Header";
 
 export default function Home() {
   return (
-    <main>
-      <FIleAndFolderListing />
-    </main>
+    <>
+      <Header />
+      <main>
+        <FIleAndFolderListing />
+      </main>
+    </>
   );
 }

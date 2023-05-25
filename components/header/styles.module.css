@@ -1,0 +1,10 @@
+.header_container {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 20px;
+}
+.header {
+  height: 60px;
+}
+.header_title {
+  gap: 8px;
+}

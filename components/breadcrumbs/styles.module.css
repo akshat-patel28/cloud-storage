@@ -1,0 +1,5 @@
+.breadcrumbs_container {
+  min-height: 40px;
+  margin: 10px 0;
+  word-break: break-all;
+}

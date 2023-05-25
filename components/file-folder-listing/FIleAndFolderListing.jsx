@@ -6,11 +6,14 @@ import Image from "next/image";
 
 const filesAndFolders = [
   {
+    path: "/",
     id: "newfolder",
     type: "folder",
     name: "New Folder",
+    internalPath: "/newfolder",
   },
   {
+    path: "/",
     id: "newFile",
     type: "file",
     name: "New File",

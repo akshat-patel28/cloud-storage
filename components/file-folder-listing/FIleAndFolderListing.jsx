@@ -1,10 +1,8 @@
-"use client";
 import styles from "./styles.module.css";
 import { MdOutlineAdd } from "react-icons/md";
 import folderImage from "public/assets/images/folder.png";
 import fileImage from "public/assets/images/file.png";
 import Image from "next/image";
-import { useState } from "react";
 
 const filesAndFolders = [
   {
@@ -27,8 +25,10 @@ const filesAndFolders = [
     name: "New File 2",
   },
 ];
-const FIleAndFolderListing = () => {
-  const [currentPath, setCurrentPath] = useState("/");
+const FIleAndFolderListing = ({
+  currentPath = "",
+  setCurrentPath = () => {},
+}) => {
   return (
     <section className="container">
       <div className={`${styles.file_and_floder_list_container} w-100 d-flex`}>

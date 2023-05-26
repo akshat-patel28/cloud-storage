@@ -3,32 +3,15 @@ import { MdOutlineAdd } from "react-icons/md";
 import folderImage from "public/assets/images/folder.png";
 import fileImage from "public/assets/images/file.png";
 import Image from "next/image";
+import { useContext } from "react";
+import { FileAndFolderContext } from "@/context/FileandFolderContext";
 
-const filesAndFolders = [
-  {
-    path: "/",
-    id: "newfolder",
-    type: "folder",
-    name: "New Folder",
-    internalPath: "/newfolder",
-  },
-  {
-    path: "/",
-    id: "newFile",
-    type: "file",
-    name: "New File",
-  },
-  {
-    path: "/newfolder",
-    id: "newFile",
-    type: "file",
-    name: "New File 2",
-  },
-];
 const FIleAndFolderListing = ({
   currentPath = "",
   setCurrentPath = () => {},
 }) => {
+  const { state } = useContext(FileAndFolderContext);
+  const { filesAndFolders } = state;
   return (
     <section className="container">
       <div className={`${styles.file_and_floder_list_container} w-100 d-flex`}>

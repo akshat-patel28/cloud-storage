@@ -20,9 +20,9 @@ const FIleAndFolderListing = ({
           .map((item, index) =>
             item.type === "folder" ? (
               <div
-                onClick={() => setCurrentPath(item.internalPath)}
+                onDoubleClick={() => setCurrentPath(item.internalPath)}
                 key={index}
-                className={`${styles.file_or_folder_div} d-flex justify-content-center align-items-center`}>
+                className={`${styles.file_or_folder_div} d-flex justify-content-center align-items-center cursor-pointer`}>
                 <Image src={folderImage} alt="folder" width={80} height={80} />
                 <p className={`${styles.margin_0} text-md`}>{item.name}</p>
               </div>

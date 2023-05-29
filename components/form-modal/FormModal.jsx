@@ -1,4 +1,4 @@
-const FormModal = () => {
+const FormModal = ({ showFormModal, setShowFormModal }) => {
   return <div>FormModal</div>;
 };
 

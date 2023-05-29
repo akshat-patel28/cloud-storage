@@ -14,8 +14,9 @@ const Breadcrumbs = ({ currentPath = "", setCurrentPath = () => {} }) => {
         {currentPath
           .split("/")
           .filter((path) => path !== "")
-          .map((path) => (
+          .map((path, index) => (
             <span
+              key={index}
               className="text-lg font-bold cursor-pointer"
               onClick={() => setCurrentPath(`/${path}`)}>
               /&nbsp;{path}

@@ -18,8 +18,17 @@ const Breadcrumbs = ({ currentPath = "", setCurrentPath = () => {} }) => {
             <span
               key={index}
               className="text-lg font-bold cursor-pointer"
-              onClick={() => setCurrentPath(`/${path}`)}>
-              /&nbsp;{path}
+              onClick={() => {
+                if (currentPath.indexOf("/", currentPath.indexOf(path)) > 0) {
+                  setCurrentPath(
+                    currentPath.substring(
+                      0,
+                      currentPath.indexOf("/", currentPath.indexOf(path))
+                    )
+                  );
+                }
+              }}>
+              /&nbsp;{path} &nbsp;
             </span>
           ))}
       </div>

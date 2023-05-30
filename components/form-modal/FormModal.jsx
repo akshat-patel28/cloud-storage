@@ -7,7 +7,10 @@ import Image from "next/image";
 import { MdOutlineError } from "react-icons/md";
 import * as Yup from "yup";
 import { useContext, useState } from "react";
-import { FileAndFolderContext } from "@/context/FileandFolderContext";
+import {
+  CREATE_NEW_FILE_OR_FOLDER_ACTION,
+  FileAndFolderContext,
+} from "@/context/FileandFolderContext";
 const initialValues = {
   fileType: "folder",
   fileName: "",
@@ -16,12 +19,28 @@ const validationSchema = Yup.object().shape({
   fileType: Yup.string().required(),
   fileName: Yup.string().required("Required !!!"),
 });
-const FormModal = ({ showFormModal, setShowFormModal }) => {
-  const { state } = useContext(FileAndFolderContext);
+const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
+  const { state, dispatch } = useContext(FileAndFolderContext);
   const { filesAndFolders } = state;
   const [errorMessage, setErrorMessage] = useState("");
   const onSubmit = (values) => {
-    console.log(values);
+    const data = {
+      path: currentPath,
+      id:
+        values.fileName.toLowerCase().replace(" ", "") +
+        Math.random().toString(),
+      type: values.fileType,
+      name: values.fileName,
+      internalPath: "",
+    };
+    if (values.fileType === "folder") {
+      data.internalPath = `/${values.fileName.toLowerCase().replace(" ", "")}`;
+    }
+    dispatch({
+      type: CREATE_NEW_FILE_OR_FOLDER_ACTION,
+      payload: [...filesAndFolders, data],
+    });
+    setShowFormModal(false);
   };
   return (
     <div

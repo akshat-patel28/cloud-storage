@@ -34,7 +34,9 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
       internalPath: "",
     };
     if (values.fileType === "folder") {
-      data.internalPath = `/${values.fileName.toLowerCase().replace(" ", "")}`;
+      data.internalPath = `${
+        currentPath !== "/" ? currentPath : ""
+      }/${values.fileName.toLowerCase().replace(" ", "")}`;
     }
     dispatch({
       type: CREATE_NEW_FILE_OR_FOLDER_ACTION,

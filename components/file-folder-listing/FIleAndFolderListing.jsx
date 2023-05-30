@@ -57,6 +57,7 @@ const FIleAndFolderListing = ({
         <FormModal
           setShowFormModal={setShowFormModal}
           showFormModal={showFormModal}
+          currentPath={currentPath}
         />
       )}
     </section>

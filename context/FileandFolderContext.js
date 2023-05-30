@@ -4,31 +4,16 @@ import { createContext, useReducer } from "react";
 export const FileAndFolderContext = createContext();
 
 const initialState = {
-  filesAndFolders: [
-    {
-      path: "/",
-      id: "newfolder",
-      type: "folder",
-      name: "New Folder",
-      internalPath: "/newfolder",
-    },
-    {
-      path: "/",
-      id: "newFile",
-      type: "file",
-      name: "New File",
-    },
-    {
-      path: "/newfolder",
-      id: "newFile",
-      type: "file",
-      name: "New File 2",
-    },
-  ],
+  filesAndFolders: [],
 };
-
+export const CREATE_NEW_FILE_OR_FOLDER_ACTION =
+  "CREATE_NEW_FILE_OR_FOLDER_ACTION";
 const fileAndFolderReducer = (state, { type, payload }) => {
   switch (type) {
+    case CREATE_NEW_FILE_OR_FOLDER_ACTION:
+      return {
+        filesAndFolders: payload,
+      };
     default:
       return state;
   }

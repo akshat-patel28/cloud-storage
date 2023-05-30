@@ -6,6 +6,8 @@ import fileImage from "public/assets/images/file.png";
 import Image from "next/image";
 import { MdOutlineError } from "react-icons/md";
 import * as Yup from "yup";
+import { useContext, useState } from "react";
+import { FileAndFolderContext } from "@/context/FileandFolderContext";
 const initialValues = {
   fileType: "folder",
   fileName: "",
@@ -15,6 +17,9 @@ const validationSchema = Yup.object().shape({
   fileName: Yup.string().required("Required !!!"),
 });
 const FormModal = ({ showFormModal, setShowFormModal }) => {
+  const { state } = useContext(FileAndFolderContext);
+  const { filesAndFolders } = state;
+  const [errorMessage, setErrorMessage] = useState("");
   const onSubmit = (values) => {
     console.log(values);
   };
@@ -85,7 +90,17 @@ const FormModal = ({ showFormModal, setShowFormModal }) => {
                     type="text"
                     name="fileName"
                     value={values.fileName}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      handleChange(e);
+                      const record = filesAndFolders.filter(
+                        (item) =>
+                          item.name.toLowerCase() ===
+                          e.target.value.toLowerCase()
+                      );
+                      if (record.length) {
+                        setErrorMessage("Name already exists !!!");
+                      } else setErrorMessage("");
+                    }}
                     onBlur={handleBlur}
                     placeholder={
                       values.fileType === "file" ? "File Name" : "Folder Name"
@@ -93,6 +108,12 @@ const FormModal = ({ showFormModal, setShowFormModal }) => {
                     className={`${styles.input_field} w-100`}
                   />
                   <div className={`${styles.field_error_container} text-sm`}>
+                    {errorMessage ? (
+                      <span className="d-flex align-items-center">
+                        <MdOutlineError />
+                        &nbsp;{errorMessage}
+                      </span>
+                    ) : null}
                     {errors.fileName && touched.fileName ? (
                       <span className="d-flex align-items-center">
                         <MdOutlineError />
@@ -103,6 +124,7 @@ const FormModal = ({ showFormModal, setShowFormModal }) => {
                 </div>
 
                 <button
+                  disabled={errorMessage}
                   className={`${styles.form_button} cursor-pointer text-md font-bold`}
                   type="submit">
                   Create

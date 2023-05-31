@@ -26,3 +26,11 @@
 .margin_top_5 {
   margin-top: 5px;
 }
+.file_folder_name_text {
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  word-break: break-all;
+}

@@ -19,28 +19,29 @@ const RenameFormModal = ({
   setShowFormModal,
   currentSeletedFileOrFolder,
 }) => {
-  console.log(currentSeletedFileOrFolder);
   const { state, dispatch } = useContext(FileAndFolderContext);
   const { filesAndFolders } = state;
   const [errorMessage, setErrorMessage] = useState('');
   const onSubmit = (values) => {
-    const data = {
-      path: currentPath,
-      id:
-        values.fileName.toLowerCase().replace(' ', '') +
-        Math.random().toString(),
-      type: values.fileType,
-      name: values.fileName,
-      internalPath: '',
-    };
-    if (values.fileType === 'folder') {
-      data.internalPath = `${
-        currentPath !== '/' ? currentPath : ''
-      }/${values.fileName.toLowerCase().replace(' ', '')}`;
-    }
+    const data = filesAndFolders.map((item) =>
+      item.name === currentSeletedFileOrFolder.name
+        ? {
+            ...item,
+            name: values.fileName,
+            internalPath: item.internalPath
+              ? item.internalPath.replace(
+                  currentSeletedFileOrFolder.name
+                    .toLowerCase()
+                    .replace(' ', ''),
+                  values.fileName.toLowerCase().replace(' ', '')
+                )
+              : '',
+          }
+        : item
+    );
     dispatch({
       type: CREATE_NEW_FILE_OR_FOLDER_ACTION,
-      payload: [...filesAndFolders, data],
+      payload: data,
     });
     setShowFormModal(false);
   };

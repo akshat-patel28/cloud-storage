@@ -6,6 +6,10 @@ import Image from 'next/image';
 import { useContext, useState } from 'react';
 import { FileAndFolderContext } from '@/context/FileandFolderContext';
 import dynamic from 'next/dynamic';
+const ActionMenu = dynamic(() => import('./ActionMenu'), {
+  ssr: false,
+  loading: () => <></>,
+});
 const RenameFormModal = dynamic(() => import('../form-modal/RenameFormModal'), {
   ssr: false,
   loading: () => <div></div>,
@@ -26,8 +30,9 @@ const FIleAndFolderListing = ({
   const [currentSeletedFileOrFolder, setCurrentSelectedFileOrFolder] = useState(
     {}
   );
+  const [openActionMenuId, setOpenActionMenuId] = useState('');
   return (
-    <section className="container">
+    <section className="container" onClick={() => setOpenActionMenuId('')}>
       <div className={`${styles.file_and_floder_list_container} w-100 d-flex`}>
         {filesAndFolders
           .filter((item) => item.path === currentPath)
@@ -36,12 +41,12 @@ const FIleAndFolderListing = ({
               <div
                 onContextMenu={(e) => {
                   e.preventDefault();
-                  setShowRenameModal(true);
+                  setOpenActionMenuId(item.id);
                   setCurrentSelectedFileOrFolder(item);
                 }}
                 onDoubleClick={() => setCurrentPath(item.internalPath)}
                 key={index}
-                className={`${styles.file_or_folder_div} d-flex justify-content-center align-items-center cursor-pointer`}
+                className={`${styles.file_or_folder_div} position-relative d-flex justify-content-center align-items-center cursor-pointer`}
               >
                 <Image src={folderImage} alt="folder" width={80} height={80} />
                 <p
@@ -49,12 +54,18 @@ const FIleAndFolderListing = ({
                 >
                   {item.name}
                 </p>
+                <ActionMenu
+                  menuId={item.id}
+                  openActionMenuId={openActionMenuId}
+                  setOpenActionMenuId={setOpenActionMenuId}
+                  setShowRenameModal={setShowRenameModal}
+                />
               </div>
             ) : (
               <div
                 onContextMenu={(e) => {
                   e.preventDefault();
-                  setShowRenameModal(true);
+                  setOpenActionMenuId(item.id);
                   setCurrentSelectedFileOrFolder(item);
                 }}
                 key={index}
@@ -66,6 +77,12 @@ const FIleAndFolderListing = ({
                 >
                   {item.name}
                 </p>
+                <ActionMenu
+                  menuId={item.id}
+                  openActionMenuId={openActionMenuId}
+                  setOpenActionMenuId={setOpenActionMenuId}
+                  setShowRenameModal={setShowRenameModal}
+                />
               </div>
             )
           )}

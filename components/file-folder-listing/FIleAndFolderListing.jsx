@@ -6,6 +6,10 @@ import Image from 'next/image';
 import { useContext, useState } from 'react';
 import { FileAndFolderContext } from '@/context/FileandFolderContext';
 import dynamic from 'next/dynamic';
+const RenameFormModal = dynamic(() => import('../form-modal/RenameFormModal'), {
+  ssr: false,
+  loading: () => <div></div>,
+});
 const FormModal = dynamic(() => import('../form-modal/FormModal'), {
   ssr: false,
   loading: () => <div></div>,
@@ -18,6 +22,10 @@ const FIleAndFolderListing = ({
   const { state } = useContext(FileAndFolderContext);
   const { filesAndFolders } = state;
   const [showFormModal, setShowFormModal] = useState(false);
+  const [showRenameModal, setShowRenameModal] = useState(false);
+  const [currentSeletedFileOrFolder, setCurrentSelectedFileOrFolder] = useState(
+    {}
+  );
   return (
     <section className="container">
       <div className={`${styles.file_and_floder_list_container} w-100 d-flex`}>
@@ -26,6 +34,11 @@ const FIleAndFolderListing = ({
           .map((item, index) =>
             item.type === 'folder' ? (
               <div
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  setShowRenameModal(true);
+                  setCurrentSelectedFileOrFolder(item);
+                }}
                 onDoubleClick={() => setCurrentPath(item.internalPath)}
                 key={index}
                 className={`${styles.file_or_folder_div} d-flex justify-content-center align-items-center cursor-pointer`}
@@ -67,6 +80,13 @@ const FIleAndFolderListing = ({
           setShowFormModal={setShowFormModal}
           showFormModal={showFormModal}
           currentPath={currentPath}
+        />
+      )}
+      {showRenameModal && (
+        <RenameFormModal
+          setShowFormModal={setShowRenameModal}
+          showFormModal={showRenameModal}
+          currentSeletedFileOrFolder={currentSeletedFileOrFolder}
         />
       )}
     </section>

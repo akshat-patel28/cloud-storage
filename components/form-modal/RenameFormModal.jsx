@@ -14,7 +14,12 @@ const initialValues = {
 const validationSchema = Yup.object().shape({
   fileName: Yup.string().required('Required !!!'),
 });
-const RenameFormModal = ({ showFormModal, setShowFormModal }) => {
+const RenameFormModal = ({
+  showFormModal,
+  setShowFormModal,
+  currentSeletedFileOrFolder,
+}) => {
+  console.log(currentSeletedFileOrFolder);
   const { state, dispatch } = useContext(FileAndFolderContext);
   const { filesAndFolders } = state;
   const [errorMessage, setErrorMessage] = useState('');

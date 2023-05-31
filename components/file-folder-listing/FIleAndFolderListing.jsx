@@ -52,6 +52,11 @@ const FIleAndFolderListing = ({
               </div>
             ) : (
               <div
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  setShowRenameModal(true);
+                  setCurrentSelectedFileOrFolder(item);
+                }}
                 key={index}
                 className={`${styles.file_or_folder_div} d-flex justify-content-center align-items-center`}
               >

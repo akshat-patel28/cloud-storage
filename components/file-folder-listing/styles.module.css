@@ -6,7 +6,6 @@
 .file_or_folder_div {
   width: 100px;
   height: 120px;
-  overflow: hidden;
   flex-direction: column;
 }
 .add_btn {
@@ -25,4 +24,29 @@
 }
 .margin_top_5 {
   margin-top: 5px;
+}
+.file_folder_name_text {
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  word-break: break-all;
+}
+.menu_container {
+  right: -80px;
+  top: 55%;
+  width: 120px;
+  height: 150px;
+  background-color: #fff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  z-index: 1111;
+  border-radius: 5px;
+  padding: 10px;
+}
+.action_label {
+  height: 30px;
+  border-bottom: 1px solid #a5a5a5;
+  padding: 5px 0px;
 }

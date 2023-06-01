@@ -30,10 +30,8 @@ const RenameFormModal = ({
             name: values.fileName,
             internalPath: item.internalPath
               ? item.internalPath.replace(
-                  currentSeletedFileOrFolder.name
-                    .toLowerCase()
-                    .replace(' ', ''),
-                  values.fileName.toLowerCase().replace(' ', '')
+                  currentSeletedFileOrFolder.name.toLowerCase().trim(),
+                  values.fileName.toLowerCase().trim()
                 )
               : '',
           }

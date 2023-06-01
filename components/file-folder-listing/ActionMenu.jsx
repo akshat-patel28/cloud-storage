@@ -21,7 +21,7 @@ const ActionMenu = ({
       (item) =>
         item.id !== menuId &&
         !item.path.includes(
-          currentSeletedFileOrFolder.name.toLowerCase().replace(' ', '')
+          currentSeletedFileOrFolder.name.toLowerCase().trim()
         )
     );
     dispatch({ type: DELETE_FILE_OR_FOLDER_ACTION, payload: filteredData });

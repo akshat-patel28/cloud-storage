@@ -1,6 +1,6 @@
 # Cloud Storage
 
-> Cloud Storage is easy and user friendly website to create and store files on cloud hassle-free.
+> Cloud Storage is easy and user friendly website template to create and store files on cloud hassle-free.
 
 # Codebase Overview
 

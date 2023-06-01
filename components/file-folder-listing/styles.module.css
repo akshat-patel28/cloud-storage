@@ -1,5 +1,6 @@
 .file_and_floder_list_container {
   max-width: 100%;
+  min-height: 65vh;
   flex-wrap: wrap;
   gap: 30px;
 }

@@ -1,5 +1,6 @@
 .file_and_floder_list_container {
   max-width: 100%;
+  min-height: 65vh;
   flex-wrap: wrap;
   gap: 30px;
 }
@@ -43,10 +44,17 @@
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   z-index: 1111;
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px 10px;
 }
 .action_label {
   height: 30px;
   border-bottom: 1px solid #a5a5a5;
-  padding: 5px 0px;
+  padding: 20px 0px;
+  gap: 5px;
+}
+.delete_action {
+  color: #ff0000;
+}
+.delete_action > svg {
+  font-size: 16px;
 }

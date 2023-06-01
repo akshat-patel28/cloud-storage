@@ -1,42 +1,40 @@
-import { Form, Formik } from "formik";
-import styles from "./styles.module.css";
-import { IoCloseCircle } from "react-icons/io5";
-import folderImage from "public/assets/images/folder.png";
-import fileImage from "public/assets/images/file.png";
-import Image from "next/image";
-import { MdOutlineError } from "react-icons/md";
-import * as Yup from "yup";
-import { useContext, useState } from "react";
+import { Form, Formik } from 'formik';
+import styles from './styles.module.css';
+import { IoCloseCircle } from 'react-icons/io5';
+import folderImage from 'public/assets/images/folder.png';
+import fileImage from 'public/assets/images/file.png';
+import Image from 'next/image';
+import { MdOutlineError } from 'react-icons/md';
+import * as Yup from 'yup';
+import { useContext, useState } from 'react';
 import {
   CREATE_NEW_FILE_OR_FOLDER_ACTION,
   FileAndFolderContext,
-} from "@/context/FileandFolderContext";
+} from '@/context/FileandFolderContext';
 const initialValues = {
-  fileType: "folder",
-  fileName: "",
+  fileType: 'folder',
+  fileName: '',
 };
 const validationSchema = Yup.object().shape({
   fileType: Yup.string().required(),
-  fileName: Yup.string().required("Required !!!"),
+  fileName: Yup.string().required('Required !!!'),
 });
 const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
   const { state, dispatch } = useContext(FileAndFolderContext);
   const { filesAndFolders } = state;
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
   const onSubmit = (values) => {
     const data = {
       path: currentPath,
-      id:
-        values.fileName.toLowerCase().replace(" ", "") +
-        Math.random().toString(),
+      id: values.fileName.toLowerCase().trim() + Math.random().toString(),
       type: values.fileType,
       name: values.fileName,
-      internalPath: "",
+      internalPath: '',
     };
-    if (values.fileType === "folder") {
+    if (values.fileType === 'folder') {
       data.internalPath = `${
-        currentPath !== "/" ? currentPath : ""
-      }/${values.fileName.toLowerCase().replace(" ", "")}`;
+        currentPath !== '/' ? currentPath : ''
+      }/${values.fileName.toLowerCase().trim()}`;
     }
     dispatch({
       type: CREATE_NEW_FILE_OR_FOLDER_ACTION,
@@ -47,10 +45,12 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
   return (
     <div
       className={`${styles.modal_container} w-100 h-100 ${
-        showFormModal ? styles.active_modal : ""
-      } d-flex justify-content-center align-items-center`}>
+        showFormModal ? styles.active_modal : ''
+      } d-flex justify-content-center align-items-center`}
+    >
       <div
-        className={`${styles.form_container} position-relative d-flex justify-content-center align-items-center`}>
+        className={`${styles.form_container} position-relative d-flex justify-content-center align-items-center`}
+      >
         <IoCloseCircle
           className={`${styles.close_icon} position-absolute cursor-pointer `}
           onClick={() => setShowFormModal(false)}
@@ -58,7 +58,8 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
-          validationSchema={validationSchema}>
+          validationSchema={validationSchema}
+        >
           {({
             handleSubmit,
             handleBlur,
@@ -75,14 +76,16 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
                 </p>
                 <div>
                   <div
-                    className={`${styles.file_type_fileds_container} d-flex justify-content-center`}>
+                    className={`${styles.file_type_fileds_container} d-flex justify-content-center`}
+                  >
                     <div
                       className={`${
                         styles.imgae_container
                       } d-flex justify-content-around align-items-center cursor-pointer ${
-                        values.fileType === "folder" ? styles.seleted_type : ""
+                        values.fileType === 'folder' ? styles.seleted_type : ''
                       }`}
-                      onClick={() => setFieldValue("fileType", "folder")}>
+                      onClick={() => setFieldValue('fileType', 'folder')}
+                    >
                       <Image
                         src={folderImage}
                         alt="folder"
@@ -94,9 +97,10 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
                       className={`${
                         styles.imgae_container
                       } d-flex justify-content-around align-items-center cursor-pointer ${
-                        values.fileType === "file" ? styles.seleted_type : ""
+                        values.fileType === 'file' ? styles.seleted_type : ''
                       }`}
-                      onClick={() => setFieldValue("fileType", "file")}>
+                      onClick={() => setFieldValue('fileType', 'file')}
+                    >
                       <Image
                         src={fileImage}
                         alt="file"
@@ -119,12 +123,12 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
                           e.target.value.toLowerCase()
                       );
                       if (record.length) {
-                        setErrorMessage("Name already exists !!!");
-                      } else setErrorMessage("");
+                        setErrorMessage('Name already exists !!!');
+                      } else setErrorMessage('');
                     }}
                     onBlur={handleBlur}
                     placeholder={
-                      values.fileType === "file" ? "File Name" : "Folder Name"
+                      values.fileType === 'file' ? 'File Name' : 'Folder Name'
                     }
                     className={`${styles.input_field} w-100`}
                   />
@@ -147,7 +151,8 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
                 <button
                   disabled={errorMessage}
                   className={`${styles.form_button} cursor-pointer text-md font-bold`}
-                  type="submit">
+                  type="submit"
+                >
                   Create
                 </button>
               </div>

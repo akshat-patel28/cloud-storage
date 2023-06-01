@@ -59,6 +59,7 @@ const FIleAndFolderListing = ({
                   openActionMenuId={openActionMenuId}
                   setOpenActionMenuId={setOpenActionMenuId}
                   setShowRenameModal={setShowRenameModal}
+                  currentSeletedFileOrFolder={currentSeletedFileOrFolder}
                 />
               </div>
             ) : (
@@ -69,7 +70,7 @@ const FIleAndFolderListing = ({
                   setCurrentSelectedFileOrFolder(item);
                 }}
                 key={index}
-                className={`${styles.file_or_folder_div} d-flex justify-content-center align-items-center`}
+                className={`${styles.file_or_folder_div} position-relative d-flex justify-content-center align-items-center`}
               >
                 <Image src={fileImage} alt="file" width={80} height={80} />
                 <p
@@ -82,6 +83,7 @@ const FIleAndFolderListing = ({
                   openActionMenuId={openActionMenuId}
                   setOpenActionMenuId={setOpenActionMenuId}
                   setShowRenameModal={setShowRenameModal}
+                  currentSeletedFileOrFolder={currentSeletedFileOrFolder}
                 />
               </div>
             )

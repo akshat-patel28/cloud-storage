@@ -15,7 +15,6 @@ const ActionMenu = ({
 }) => {
   const { state, dispatch } = useContext(FileAndFolderContext);
   const { filesAndFolders } = state;
-  console.log(filesAndFolders);
   const deleteFileOrFolder = () => {
     const filteredData = filesAndFolders.filter(
       (item) =>

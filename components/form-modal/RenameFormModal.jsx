@@ -23,20 +23,38 @@ const RenameFormModal = ({
   const { filesAndFolders } = state;
   const [errorMessage, setErrorMessage] = useState('');
   const onSubmit = (values) => {
-    const data = filesAndFolders.map((item) =>
-      item.name === currentSeletedFileOrFolder.name
-        ? {
-            ...item,
-            name: values.fileName,
-            internalPath: item.internalPath
-              ? item.internalPath.replace(
-                  currentSeletedFileOrFolder.name.toLowerCase().trim(),
-                  values.fileName.toLowerCase().trim()
-                )
-              : '',
-          }
-        : item
-    );
+    const data = filesAndFolders.map((item) => {
+      if (item.name === currentSeletedFileOrFolder.name) {
+        return {
+          ...item,
+          name: values.fileName,
+          internalPath: item.internalPath
+            ? item.internalPath.replace(
+                currentSeletedFileOrFolder.name.toLowerCase().trim(),
+                values.fileName.toLowerCase().trim()
+              )
+            : '',
+        };
+      } else if (
+        item.path.includes(currentSeletedFileOrFolder.name.toLowerCase().trim())
+      ) {
+        return {
+          ...item,
+          path: item.path.replace(
+            currentSeletedFileOrFolder.name.toLowerCase().trim(),
+            values.fileName.toLowerCase().trim()
+          ),
+          internalPath: item.internalPath
+            ? item.internalPath.replace(
+                currentSeletedFileOrFolder.name.toLowerCase().trim(),
+                values.fileName.toLowerCase().trim()
+              )
+            : '',
+        };
+      } else {
+        return item;
+      }
+    });
     dispatch({
       type: CREATE_NEW_FILE_OR_FOLDER_ACTION,
       payload: data,

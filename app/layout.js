@@ -1,3 +1,4 @@
+'use client';
 import { FileAndFolderProvider } from '@/context/FileandFolderContext';
 import './globals.css';
 import { Inter } from 'next/font/google';

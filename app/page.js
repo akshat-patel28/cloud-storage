@@ -1,11 +1,11 @@
-"use client";
-import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
-import FIleAndFolderListing from "@/components/file-folder-listing/FIleAndFolderListing";
-import Header from "@/components/header/Header";
-import { useState } from "react";
+'use client';
+import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
+import FileAndFolderListing from '@/components/file-folder-listing/FileAndFolderListing';
+import Header from '@/components/header/Header';
+import { useState } from 'react';
 
 export default function Home() {
-  const [currentPath, setCurrentPath] = useState("/");
+  const [currentPath, setCurrentPath] = useState('/');
   return (
     <>
       <Header />
@@ -14,7 +14,7 @@ export default function Home() {
           currentPath={currentPath}
           setCurrentPath={setCurrentPath}
         />
-        <FIleAndFolderListing
+        <FileAndFolderListing
           currentPath={currentPath}
           setCurrentPath={setCurrentPath}
         />

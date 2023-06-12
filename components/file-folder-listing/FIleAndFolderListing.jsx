@@ -3,9 +3,9 @@ import { MdOutlineAdd } from 'react-icons/md';
 import folderImage from 'public/assets/images/folder.png';
 import fileImage from 'public/assets/images/file.png';
 import Image from 'next/image';
-import { useContext, useState } from 'react';
-import { FileAndFolderContext } from '@/context/FileandFolderContext';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useSelector } from 'react-redux';
 const ActionMenu = dynamic(() => import('./ActionMenu'), {
   ssr: false,
   loading: () => <></>,
@@ -23,8 +23,7 @@ const FIleAndFolderListing = ({
   currentPath = '',
   setCurrentPath = () => {},
 }) => {
-  const { state } = useContext(FileAndFolderContext);
-  const { filesAndFolders } = state;
+  const { filesAndFolders } = useSelector((state) => state.fileAndFolderRedux);
   const [showFormModal, setShowFormModal] = useState(false);
   const [showRenameModal, setShowRenameModal] = useState(false);
   const [currentSeletedFileOrFolder, setCurrentSelectedFileOrFolder] = useState(

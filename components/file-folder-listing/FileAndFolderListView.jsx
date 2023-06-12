@@ -18,8 +18,7 @@ const FormModal = dynamic(() => import('../form-modal/FormModal'), {
   ssr: false,
   loading: () => <div></div>,
 });
-
-const FileAndFolderListing = ({
+const FileAndFolderListView = ({
   currentPath = '',
   setCurrentPath = () => {},
 }) => {
@@ -116,4 +115,4 @@ const FileAndFolderListing = ({
   );
 };
 
-export default FileAndFolderListing;
+export default FileAndFolderListView;

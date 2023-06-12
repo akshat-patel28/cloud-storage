@@ -8,3 +8,6 @@
 .header_title {
   gap: 8px;
 }
+.delete_icon {
+  color: red;
+}

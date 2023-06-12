@@ -3,11 +3,7 @@ import styles from './styles.module.css';
 import { IoCloseCircle } from 'react-icons/io5';
 import { MdOutlineError } from 'react-icons/md';
 import * as Yup from 'yup';
-import { useContext, useState } from 'react';
-import {
-  CREATE_NEW_FILE_OR_FOLDER_ACTION,
-  FileAndFolderContext,
-} from '@/context/FileandFolderContext';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRenamedFileAndFolderAction } from '@/redux/file-folder-redux/action.file-folder-redux';
 const initialValues = {

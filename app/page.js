@@ -1,6 +1,6 @@
 'use client';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import FileAndFolderListing from '@/components/file-folder-listing/FileAndFolderListing';
+import FileAndFolderListing from '../components/file-folder-listing/FileAndFolderListing';
 import Header from '@/components/header/Header';
 import { useState } from 'react';
 

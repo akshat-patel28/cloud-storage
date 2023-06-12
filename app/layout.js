@@ -6,14 +6,13 @@ import { store } from '@/redux/store';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'Cloud',
-  description: 'A Cloud Storage System',
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <title>Cloud</title>
+        <meta name="description" content="A Cloud Storage System" />
+      </head>
       <body className={inter.className}>
         <Provider store={store}>{children}</Provider>
       </body>

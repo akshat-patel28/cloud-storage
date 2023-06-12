@@ -10,3 +10,9 @@ export const addNewFileAndFolderAction = (data) => {
     dispatch(setFileAndFolderAction(listData));
   };
 };
+
+export const setRenamedFileAndFolderAction = (data) => {
+  return (dispatch) => {
+    dispatch(setFileAndFolderAction(data));
+  };
+};

@@ -3,11 +3,9 @@ import styles from './styles.module.css';
 import { IoCloseCircle } from 'react-icons/io5';
 import { MdOutlineError } from 'react-icons/md';
 import * as Yup from 'yup';
-import { useContext, useState } from 'react';
-import {
-  CREATE_NEW_FILE_OR_FOLDER_ACTION,
-  FileAndFolderContext,
-} from '@/context/FileandFolderContext';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRenamedFileAndFolderAction } from '@/redux/file-folder-redux/action.file-folder-redux';
 const initialValues = {
   fileName: '',
 };
@@ -19,8 +17,8 @@ const RenameFormModal = ({
   setShowFormModal,
   currentSeletedFileOrFolder,
 }) => {
-  const { state, dispatch } = useContext(FileAndFolderContext);
-  const { filesAndFolders } = state;
+  const { filesAndFolders } = useSelector((state) => state.fileAndFolderRedux);
+  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState('');
   const onSubmit = (values) => {
     const data = filesAndFolders.map((item) => {
@@ -55,10 +53,7 @@ const RenameFormModal = ({
         return item;
       }
     });
-    dispatch({
-      type: CREATE_NEW_FILE_OR_FOLDER_ACTION,
-      payload: data,
-    });
+    dispatch(setRenamedFileAndFolderAction(data));
     setShowFormModal(false);
   };
   return (

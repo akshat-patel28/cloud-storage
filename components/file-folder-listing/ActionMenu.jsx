@@ -1,11 +1,8 @@
-import { useContext } from 'react';
 import styles from './styles.module.css';
 import { CgRename } from 'react-icons/cg';
 import { FaRegTrashAlt } from 'react-icons/fa';
-import {
-  DELETE_FILE_OR_FOLDER_ACTION,
-  FileAndFolderContext,
-} from '@/context/FileandFolderContext';
+import { deleteFileOrFolderAction } from '@/redux/file-folder-redux/action.file-folder-redux';
+import { useDispatch, useSelector } from 'react-redux';
 const ActionMenu = ({
   menuId,
   setShowRenameModal,
@@ -13,8 +10,8 @@ const ActionMenu = ({
   setOpenActionMenuId,
   currentSeletedFileOrFolder,
 }) => {
-  const { state, dispatch } = useContext(FileAndFolderContext);
-  const { filesAndFolders } = state;
+  const { filesAndFolders } = useSelector((state) => state.fileAndFolderRedux);
+  const dispatch = useDispatch();
   const deleteFileOrFolder = () => {
     const filteredData = filesAndFolders.filter(
       (item) =>
@@ -23,7 +20,7 @@ const ActionMenu = ({
           currentSeletedFileOrFolder.name.toLowerCase().trim()
         )
     );
-    dispatch({ type: DELETE_FILE_OR_FOLDER_ACTION, payload: filteredData });
+    dispatch(deleteFileOrFolderAction(filteredData));
   };
   if (menuId !== openActionMenuId) {
     return <></>;

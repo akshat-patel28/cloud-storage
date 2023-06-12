@@ -6,11 +6,9 @@ import fileImage from 'public/assets/images/file.png';
 import Image from 'next/image';
 import { MdOutlineError } from 'react-icons/md';
 import * as Yup from 'yup';
-import { useContext, useState } from 'react';
-import {
-  CREATE_NEW_FILE_OR_FOLDER_ACTION,
-  FileAndFolderContext,
-} from '@/context/FileandFolderContext';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewFileAndFolderAction } from '@/redux/file-folder-redux/action.file-folder-redux';
 const initialValues = {
   fileType: 'folder',
   fileName: '',
@@ -20,9 +18,9 @@ const validationSchema = Yup.object().shape({
   fileName: Yup.string().required('Required !!!'),
 });
 const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
-  const { state, dispatch } = useContext(FileAndFolderContext);
-  const { filesAndFolders } = state;
   const [errorMessage, setErrorMessage] = useState('');
+  const { filesAndFolders } = useSelector((state) => state.fileAndFolderRedux);
+  const dispatch = useDispatch();
   const onSubmit = (values) => {
     const data = {
       path: currentPath,
@@ -36,10 +34,7 @@ const FormModal = ({ showFormModal, setShowFormModal, currentPath }) => {
         currentPath !== '/' ? currentPath : ''
       }/${values.fileName.toLowerCase().trim()}`;
     }
-    dispatch({
-      type: CREATE_NEW_FILE_OR_FOLDER_ACTION,
-      payload: [...filesAndFolders, data],
-    });
+    dispatch(addNewFileAndFolderAction(data));
     setShowFormModal(false);
   };
   return (

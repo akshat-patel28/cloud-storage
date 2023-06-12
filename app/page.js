@@ -1,6 +1,6 @@
 'use client';
 import Breadcrumbs from '@/components/breadcrumbs/Breadcrumbs';
-import FileAndFolderListing from '../components/file-folder-listing/FileAndFolderListing';
+import FIleAndFolderListing from '@/components/file-folder-listing/FIleAndFolderListing';
 import Header from '@/components/header/Header';
 import { useState } from 'react';
 
@@ -14,7 +14,7 @@ export default function Home() {
           currentPath={currentPath}
           setCurrentPath={setCurrentPath}
         />
-        <FileAndFolderListing
+        <FIleAndFolderListing
           currentPath={currentPath}
           setCurrentPath={setCurrentPath}
         />

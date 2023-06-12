@@ -16,3 +16,9 @@ export const setRenamedFileAndFolderAction = (data) => {
     dispatch(setFileAndFolderAction(data));
   };
 };
+
+export const deleteFileOrFolderAction = (data) => {
+  return (dispatch) => {
+    dispatch(setFileAndFolderAction(data));
+  };
+};
